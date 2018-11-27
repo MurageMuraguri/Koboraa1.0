@@ -108,7 +108,7 @@ session_start();
             <span>Buildings</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="tenants.php">
+          <a class="nav-link" href="viewBuilding.php.php">
             <i class="fas fa-users"></i>
             <span>Tenants</span></a>
         </li>

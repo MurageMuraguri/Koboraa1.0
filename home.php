@@ -1,5 +1,6 @@
  <?php
 session_start();
+require "process/DB_connect.php";
 
 ?>
 
@@ -69,52 +70,32 @@ session_start();
       </ul>
             Hello <?php print($_SESSION['firstName']." ".$_SESSION['lastName']);?>
     </nav>
-<div class="row">
-<div class="col-md-3">
-    <div id="wrapper">
 
-      <!-- Sidebar -->
-                            <ul class="sidebar navbar-nav">
-
-                            <li class="nav-item">
-                              <a class="nav-link" href="buildings.php">
-                                <i class="fas fa-home"></i>
-                                <span>Buildings</span></a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="tenants.php">
-                                <i class="fas fa-users"></i>
-                                <span>Tenants</span></a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="complaints.php">
-                                <i class="fas fa-asterisk"></i>
-                                <span>Complaints</span></a>
-                            </li>
-
-                            <li class="nav-item">
-                              <a class="nav-link" href="pay.php">
-                                <i class="fas fa-hand-holding-usd"></i>
-                                <span>Payment</span></a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="reminder.php">
-                                <i class="fas fa-mail-bulk"></i>
-                                <span>Reminders</span></a>
-                            </li>
-                          </ul>
-
-</div>
-    </div>
       <div id="content-wrapper">
 
         <div class="container-fluid">   
 
           </div>
         </div>
-<div class="col-md-5">
+
+
+
+
+
+
+
+
+
+
+
+
+
           <!-- Icon Cards-->
           <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-10">
+          
             <div class="col-xl-3 col-sm-6 mb-3">
               <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-body">
@@ -129,12 +110,68 @@ session_start();
               </div>
             </div>
          
-          </div>
+         
+          <?php
 
-</div>  
+$id=$_SESSION['userID'];
+$showBuild_query="SELECT * FROM building where ownerID ='$id' ";
+$show=$conn->query($showBuild_query);
 
 
+    ?>
+    <br/>
+        <p>
+     <span>
+ 
+            </span>
+          
+         <table class="table " >
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Building Name</th>
+                      <th scope="col">Estate and City</th>
+                      <th scope="col">Room Capacity</th>
+                     <th scope="col">Caretaker Name</th>
+                    <th scope="col">Caretaker Number</th>
+                    <th scope="col">Unique Building Id</th>
+                    <th scope="col">View more</th>
+                    </tr>
+                  </thead>
+    
+      <?php
+        $count=1;
+   
+    if ($show->num_rows > 0){
+    while($show_row = $show->fetch_assoc()){
+        ?>
+    
+    <tbody>
+                    <tr>
+                      <td><?php print $count;?></td>
+                        <td><?php print $show_row["buildingName"]?></td>
+                        <td><?php print $show_row["buildingEstate"]."</br> ".$show_row["buildingCity"];?></td>
+                        <td><?php print $show_row["roomCapacity"];?></td>
+                        <td><?php print $show_row["caretakerName"];?></td>
+                        <td><?php print $show_row["caretakerNo"];?></td>
+                        <td><?php print $show_row["buildID"];?></td>
+                        <td><a href="viewBuilding.php?ID=<?php print $show_row['buildingID'];?>">View<?php print " ".$show_row['buildingName'];?></td>
+                    </tr>
+                  </tbody>
+               
+    <?php
+        $count++;
+        }
+    }
+        
+       
+    ?>
+     </table>
 </div>
+<div class="col-md-1">
+          </div>
+</div>
+
     <!--Modal for building-->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -156,7 +193,7 @@ session_start();
             <input type="text" class="form-control" name="city" required>
           </div>
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Building Estate:</label>
+            <label for="m``essage-text" class="col-form-label">Building Estate:</label>
             <input type="text" class="form-control" name="estate" required>
           </div>
           <div class="form-group">

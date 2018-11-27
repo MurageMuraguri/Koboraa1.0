@@ -3,10 +3,14 @@ session_start();
 $_SESSION['tIN']=0;
 require "process/DB_connect.php";
 
-$buildingID=$_GET['ID'];
+if(isset($_GET['ID'])){
+$_SESSION['buildingID']=$_GET['ID'];
+}
+$buildingID=$_SESSION['buildingID'];
 $showBuild_query="SELECT * FROM building where buildingID ='$buildingID' ";
 $show=$conn->query($showBuild_query);
 $show_row = $show->fetch_assoc();
+$_SESSION['buildingName']=$show_row['buildingName'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,20 +82,63 @@ $show_row = $show->fetch_assoc();
     <div class="jumbotron jumbotron-fluid" >
   <div class="container">
     <h1 class="display-4"><?php print $show_row['buildingName']; ?></h1>
-    <h6><?php print $show_row['buildingEstate']; ?></h6>
-    <h6><?php print $show_row['buildingCity']; ?></h6>
+    <h4>Complaints</h4>
   </div>
 </div>
 
 
     <!--END-->
-   
+
+
     <div class="row">
-        <div class="col-md-2 border-right">
-           
-        </div>
-        <div class="col-md-10">
-   
+                    <div class="col-md-3">
+                            <div id="wrapper">
+
+                                    <!-- Sidebar -->
+                                    <ul class="sidebar navbar-nav">
+                                        
+                                        
+                                        <li class="nav-item">
+                                        <a class="nav-link" href="viewBuilding.php">
+                                            <i class="fas fa-users"></i>
+                                            <span>Tenants</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                        <a class="nav-link" href="complaints.php">
+                                            <i class="fas fa-asterisk"></i>
+                                            <span>Complaints</span></a>
+                                        </li>
+                                    
+                                        <li class="nav-item">
+                                        <a class="nav-link" href="pay.php">
+                                            <i class="fas fa-hand-holding-usd"></i>
+                                            <span>Payment</span></a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                                            <a class="nav-link" href="reminder.php">
+                                                                <i class="fas fa-mail-bulk"></i>
+                                                                <span>Reminders</span></a>
+                                                            </li>
+                                    </ul>
+
+                            <div id="content-wrapper">
+
+                                <div class="container-fluid">   
+
+                            
+
+
+
+                            
+
+                    </div>
+                    </div>
+                        </div>
+                </div>
+
+  
+   <div class="col-md-9">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >+ ADD TENANTS</button>
        
        <?php
@@ -138,16 +185,16 @@ $show_row = $show->fetch_assoc();
                   </tbody>
                
 
-    </table>   
+ 
        <?php
        $count++;
             }
         }
        
        ?>
-        </div>
-    </div>
-
+          </table>   
+</div>
+   </div>
 
 
 

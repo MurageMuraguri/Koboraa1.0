@@ -69,6 +69,14 @@ session_start();
       </ul>
             Hello <?php print($_SESSION['firstName']." ".$_SESSION['lastName']);?>
     </nav>
+
+    <!--JUMBOTRON TING-->
+    <div class="jumbotron jumbotron-fluid" >
+  <div class="container">
+    <h1 class="display-4"><?php print $_SESSION['buildingName']; ?></h1>
+    <h4>Reminders</h4>
+  </div>
+</div>
 <div class="row">
 <div class="col-md-3">
     <div id="wrapper">
@@ -76,13 +84,9 @@ session_start();
       <!-- Sidebar -->
                             <ul class="sidebar navbar-nav">
 
+                           
                             <li class="nav-item">
-                              <a class="nav-link" href="buildings.php">
-                                <i class="fas fa-home"></i>
-                                <span>Buildings</span></a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="tenants.php">
+                              <a class="nav-link" href="viewBuilding.php">
                                 <i class="fas fa-users"></i>
                                 <span>Tenants</span></a>
                             </li>
