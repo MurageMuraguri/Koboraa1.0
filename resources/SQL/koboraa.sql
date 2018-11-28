@@ -32,7 +32,7 @@ CREATE TABLE tenant(
     buildingID int(5) not null,
     ownerID int(5) not null,
     rentalNumber varchar(10),
-    payStatus Boolean DEFAULT 0,
+    payStatus int(2) DEFAULT 0,
     primary key (tenantID)
 );
 
@@ -40,9 +40,11 @@ CREATE TABLE complaint(
     complaintID int(5) not null auto_increment,
     complaint text not null,
     complaintTime bigint(10) not null,
-    buildingID varchar(15) not null,
+    buildID varchar(15) not null,
+    buildingID int(5) not null,
     ownerID int(5) not null,
     buildingName varchar(90) not null,
+    status int(2) DEFAULT 0,
     primary key (complaintID)
 );
 
@@ -50,8 +52,10 @@ CREATE TABLE complaint(
 CREATE TABLE prePay(
     ID int(5) not null auto_increment,
     transactionID varchar(20) not null,
-    buildingID varchar(15) not null,
-     ownerID int(5) not null,
+    buildID varchar(15) not null,
+    buildingID int(5) not null,
+    ownerID int(5) not null,
     buildingName varchar(90) not null,
+    confirm int(2) DEFAULT 0,
     primary key (ID)
 );

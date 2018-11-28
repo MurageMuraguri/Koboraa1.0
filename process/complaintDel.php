@@ -1,6 +1,6 @@
 <?php
 require "DB_connect.php";
-session_start();
+
 $id=$_GET['complaintID'];
 
 

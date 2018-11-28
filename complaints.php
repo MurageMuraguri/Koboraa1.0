@@ -1,5 +1,6 @@
 <?php
 session_start();
+$buildingID=$_SESSION['buildingID'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,35 +143,58 @@ session_start();
                       <th scope="col">Building</th>
                       <th scope="col">Complaint</th>
                       <th scope="col">Status</th>
+                      <th scope="col">       </th>
                     </tr>
                   </thead>
-                  </table>
+                  
 <?php
 require "process/DB_connect.php";
 $ownerID=$_SESSION['userID'];
-$showcom_query="SELECT * FROM complaint where ownerID ='$ownerID' ";
+$showcom_query="SELECT * FROM complaint where buildingID ='$buildingID' ";
 $show=$conn->query($showcom_query);
 $count=1;
 if ($show->num_rows > 0){
   while($show_row = $show->fetch_assoc()){
 ?>
-                  <table class="table">
+                  
                   <tbody>
                     <tr>
                       <th scope="row"><?php print $count; ?></th>
                       <td><?php print date("jS F Y", $show_row['complaintTime']); ?></td>
                       <td><?php print $show_row['buildingName'];  ?></td>
                       <td><?php print $show_row['complaint'];?></td>
-                      <td><a href="process/complaintDel.php?complaintID=<?php print $show_row['complaintID'];?>">Mark as done</a></td>
+                      <td>
+                      <?php 
+                      if($show_row['status']==0){
+                      ?>
+                      <a href="process/complaintDone.php?complaintID=<?php print $show_row['complaintID'];?>">Mark as done</a>
+                      <?php
+                      }else{
+                        print "Complaint Done";
+                      }
+                      
+                      ?>
+                      </td>
+                      <td><a href="process/complaintDel.php?complaintID=<?php print $show_row['complaintID'];?>">Delete Complaint</a></td>
                     </tr>
                    
                     
                   </tbody>
-                </table>
+                
 <?php
 $count++;
   }
 }
+
+?>
+</table>
+<?php
+$capacity=$show_row['roomCapacity'];
+$vacancies=0;
+if($capacity!=$count){
+$vacancies=$capacity-$count;
+}
+print "You have ".$vacancies." vacancies in your building";
 
 ?>
     </div>

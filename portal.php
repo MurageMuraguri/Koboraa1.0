@@ -163,7 +163,7 @@ require "process/DB_connect.php";
                      $buildID = mysqli_real_escape_string($conn, $_POST["buildID"]);
                      $complaint = mysqli_real_escape_string($conn, $_POST["complaint"]);
  
-                    $res=$conn->query("SELECT ownerID,buildingName FROM building WHERE buildID ='".$buildID."'");  
+                    $res=$conn->query("SELECT ownerID,buildingName,buildingID FROM building WHERE buildID ='".$buildID."'");  
 
             if($res->num_rows === 0) {
      
@@ -175,8 +175,9 @@ require "process/DB_connect.php";
              
                 $ownerID=$row['ownerID'];
                 $buildingName=$row['buildingName'];
+                $buildingID=$row['buildingID'];
              
-                $complain_insert="INSERT INTO complaint (complaint,complaintTime,buildingID,ownerID,buildingName) VALUES     ('$complaint',UNIX_TIMESTAMP(),'$buildID','$ownerID','$buildingName');";
+                $complain_insert="INSERT INTO complaint (complaint,complaintTime,buildingID,buildID,ownerID,buildingName) VALUES     ('$complaint',UNIX_TIMESTAMP(),'$buildingID','$buildID','$ownerID','$buildingName');";
 
                  
                       if($conn->query($complain_insert) === TRUE){
@@ -196,7 +197,7 @@ require "process/DB_connect.php";
               $buildID = mysqli_real_escape_string($conn, $_POST["buildID"]);
               $transID = mysqli_real_escape_string($conn, $_POST["transID"]);
                 
-           $ress=$conn->query("SELECT ownerID,buildingName FROM building WHERE buildID ='".$buildID."'");  
+           $ress=$conn->query("SELECT ownerID,buildingName,buildinID FROM building WHERE buildID ='".$buildID."'");  
 
               if($ress->num_rows === 0) {
      
@@ -206,8 +207,9 @@ require "process/DB_connect.php";
                   $row=mysqli_fetch_assoc($ress);
                   $ownerID=$row['ownerID'];
                   $buildingName=$row['buildingName'];
+                  $buildingID=$row['buildingID'];
                     
-              $transaction_insert="INSERT INTO prepay (transactionID,buildingID,ownerID,buildingName) VALUES ('$transID','$buildID','$ownerID','$buildingName');";
+              $transaction_insert="INSERT INTO prepay (transactionID,buildingID,buildID,ownerID,buildingName) VALUES ('$transID','$buildinID','$buildID','$ownerID','$buildingName');";
  
               if($conn->query($transaction_insert) === TRUE){
                 print '<script type="text/javascript">alert("Transaction Number Submitted Succesfully");</script>';

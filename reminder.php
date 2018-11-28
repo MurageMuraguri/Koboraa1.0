@@ -107,7 +107,34 @@ session_start();
                                 <span>Reminders</span></a>
                             </li>
                           </ul>
-
+</div>
+</div>
+<div class="col-md-6">
+<?php $_SESSION['mailMessage'];   ?>
+<form method = "POST" action = "phpmailer\sender.php">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Recepients</label>
+    <input type="email" class="form-control" name="recepients" placeholder="<?php  print "All ". $_SESSION['buildingName']." tenants";?>" value="<?php print $_SESSION['buildingID'];?>" readonly>
+  </div>
+  <div class="form-group">
+   
+    <input type="text" class="form-control" name="buildingID" placeholder="<?php  print "All ". $_SESSION['buildingName']." tenants";?>" value="<?php print $_SESSION['buildingID'];?>" hidden>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Subject</label>
+    <input type="text" class="form-control" name="subject" placeholder="Subject">
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Reminder Body</label>
+    <textarea class="form-control" name="body" rows="5"></textarea>
+  </div>
+  <input type="submit" id="submit" name="submit" class="btn btn-outline-primary" value="Send out reminder" />
+</form>
+</div>
+<div class="col-md-3">
+</div>
+</div>
 
 
 
