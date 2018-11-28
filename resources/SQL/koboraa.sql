@@ -56,6 +56,18 @@ CREATE TABLE prePay(
     buildingID int(5) not null,
     ownerID int(5) not null,
     buildingName varchar(90) not null,
-    confirm int(2) DEFAULT 0,
+    rentalNumber varchar(10),
+    amount int(5) not null,
+    primary key (ID)
+);
+CREATE TABLE conPay(
+    ID int(5) not null auto_increment,
+    transactionID varchar(20) not null,
+    buildID varchar(15) not null,
+    buildingID int(5) not null,
+    ownerID int(5) not null,
+    buildingName varchar(90) not null,
+    rentalNumber varchar(10),
+    amount int(5) not null,
     primary key (ID)
 );

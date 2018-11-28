@@ -142,14 +142,14 @@ $buildingID=$_SESSION['buildingID'];
                             <tr>
                               <th scope="col">#</th>
                               <th scope="col">Transaction ID</th>
-                              <th scope="col">House/Office Number</th>
+                              <th scope="col">Transaction Amount</th>
                               <th scope="col">Transaction Amount</th>
                               <th scope="col">                </th>
                           
                             </tr>
                           </thead>
             <?php
-                  $showpay_query="SELECT * FROM prepay where buildingID ='$buildingID'";
+                  $showpay_query="SELECT * FROM conpay where buildingID ='$buildingID'";
                   $show=$conn->query($showpay_query);
 
                   if (($show->num_rows) > 0){
@@ -167,7 +167,7 @@ $buildingID=$_SESSION['buildingID'];
                                 <td><?php print $show_row["transactionID"]?></td>
                                 <td><?php print $show_row["rentalNumber"]?></td>
                                 <td><?php print $show_row["amount"]?></td>
-                                <td><a  href="process/transConfirm.php?ID=<?php print $show_row['ID']; ?>&rNumber=<?php print $show_row['rentalNumber'];?>">Confirm Transaction</a></td>
+                                
                             </tr>
                           </tbody>
                       

@@ -180,7 +180,7 @@ $_SESSION['buildingName']=$show_row['buildingName'];
                         <td><?php print $show_row["rentalNumber"];?></td>
                         <td><?php print $show_row["tenantPhone"];?></td>
                         <td><?php print $show_row["tenantEmail"];?></td>
-                        <td><a href="">Delete<?php print " ".$show_row['tenantName'];?></td>
+                        <td><a href="process/delUser.php?tenantID=<?php print $show_row['tenantID'];?>">Delete<?php print " ".$show_row['tenantName'];?></td>
                     </tr>
                   </tbody>
                

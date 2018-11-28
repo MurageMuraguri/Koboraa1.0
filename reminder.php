@@ -110,11 +110,16 @@ session_start();
 </div>
 </div>
 <div class="col-md-6">
-<?php $_SESSION['mailMessage'];   ?>
+<?php if(isset($_SESSION['mail'])) {
+  if($_SESSION['mail']===1){
+     print $_SESSION['mailMessage'];
+      $_SESSION['mail']=0;
+      $_SESSION['mailMessage']="";
+  }  } ?>
 <form method = "POST" action = "phpmailer\sender.php">
   <div class="form-group">
     <label for="exampleFormControlInput1">Recepients</label>
-    <input type="email" class="form-control" name="recepients" placeholder="<?php  print "All ". $_SESSION['buildingName']." tenants";?>" value="<?php print $_SESSION['buildingID'];?>" readonly>
+    <input type="email" class="form-control" name="recepients" placeholder="<?php  print "All ". $_SESSION['buildingName']." tenants";?>"  readonly>
   </div>
   <div class="form-group">
    

@@ -42,7 +42,7 @@ $mail->Password = "Muragepower1";
 //Set who the message is to be sent from
 $mail->setFrom('koboraa@gmail.com', 'Landlord');
 //Set an alternative reply-to address
-//$mail->addReplyTo('replyto@example.com', 'First Last');
+//$mail->addReplyTo('koboraa@gmail.com', 'Landlord');
 //Set who the message is to be sent to
 while($show_row = $result->fetch_assoc()) {
     $mail->addAddress($show_row['tenantEmail'],'');
@@ -52,19 +52,21 @@ while($show_row = $result->fetch_assoc()) {
 $mail->Subject = $subject;
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-$mail->msgHTML($body);
+$mail->msgHTML($body)."</br><b>Do not reply to this email</b>";
 //Replace the plain text body with one created manually
 $mail->AltBody = $body;
 //Attach an image file
 //$mail->addAttachment('images/phpmailer_mini.png');
 //send the message, check for errors
 if (!$mail->send()) {
+    $_SESSION['mail']=1;
     $_SESSION['mailMessage']="<div class=\"alert alert-danger\" role=\"alert\">
     Reminders have not been sent out please try again!
   </div>";
   header("Location: ../reminder.php");
     //. $mail->ErrorInfo;
 } else {
+    $_SESSION['mail']=1;
     $_SESSION['mailMessage']="<div class=\"alert alert-success\" role=\"alert\">
     Reminders sent out successfully.
   </div>";

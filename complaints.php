@@ -192,7 +192,7 @@ $count++;
 $capacity=$show_row['roomCapacity'];
 $vacancies=0;
 if($capacity!=$count){
-$vacancies=$capacity-$count;
+$vacancies=$count-$capacity;
 }
 print "You have ".$vacancies." vacancies in your building";
 

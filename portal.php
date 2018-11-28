@@ -140,11 +140,19 @@ require "process/DB_connect.php";
     <label for="message-text" class="col-form-label">Transaction Number</label>
     <input type="text" class="form-control" name="transID" required>
   </div>
+  <div class="form-group">
+    <label for="message-text" class="col-form-label">Transaction Amount</label>
+    <input type="text" class="form-control" name="amount" required>
+  </div>
+  <div class="form-group">
+    <label for="message-text" class="col-form-label">House/Office number</label>
+    <input type="text" class="form-control" name="rNumber" required>
+  </div>
  
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<input type="submit" id="submitPay" name="submitPay" class="btn btn-primary" value="Submit Complaint" />
+<input type="submit" id="submitPay" name="submitPay" class="btn btn-primary" value="Submit Transaction Details" />
 </div>
 </form>
 </div>
@@ -162,7 +170,7 @@ require "process/DB_connect.php";
 
                      $buildID = mysqli_real_escape_string($conn, $_POST["buildID"]);
                      $complaint = mysqli_real_escape_string($conn, $_POST["complaint"]);
- 
+                    
                     $res=$conn->query("SELECT ownerID,buildingName,buildingID FROM building WHERE buildID ='".$buildID."'");  
 
             if($res->num_rows === 0) {
@@ -196,8 +204,11 @@ require "process/DB_connect.php";
 
               $buildID = mysqli_real_escape_string($conn, $_POST["buildID"]);
               $transID = mysqli_real_escape_string($conn, $_POST["transID"]);
+              $rNumber = mysqli_real_escape_string($conn, $_POST["rNumber"]);
+              $amount = mysqli_real_escape_string($conn, $_POST["amount"]);
+ 
                 
-           $ress=$conn->query("SELECT ownerID,buildingName,buildinID FROM building WHERE buildID ='".$buildID."'");  
+           $ress=$conn->query("SELECT ownerID,buildingName,buildingID FROM building WHERE buildID ='".$buildID."'");  
 
               if($ress->num_rows === 0) {
      
@@ -209,7 +220,7 @@ require "process/DB_connect.php";
                   $buildingName=$row['buildingName'];
                   $buildingID=$row['buildingID'];
                     
-              $transaction_insert="INSERT INTO prepay (transactionID,buildingID,buildID,ownerID,buildingName) VALUES ('$transID','$buildinID','$buildID','$ownerID','$buildingName');";
+              $transaction_insert="INSERT INTO prepay (transactionID,buildingID,buildID,ownerID,buildingName,rentalNumber,amount) VALUES ('$transID','$buildingID','$buildID','$ownerID','$buildingName','$rNumber','$amount');";
  
               if($conn->query($transaction_insert) === TRUE){
                 print '<script type="text/javascript">alert("Transaction Number Submitted Succesfully");</script>';
