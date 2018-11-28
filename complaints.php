@@ -73,7 +73,7 @@ $buildingID=$_SESSION['buildingID'];
     <div class="jumbotron jumbotron-fluid" >
   <div class="container">
     <h1 class="display-4"><?php print $_SESSION['buildingName']; ?></h1>
-    <h4>Tenants</h4>
+    <h4>Complaints</h4>
   </div>
 </div>
 
@@ -234,7 +234,7 @@ print "You have ".$vacancies." vacancies in your building";
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="">Logout</a>
+            <a class="btn btn-primary" href="process/logout.php">Logout</a>
           </div>
         </div>
       </div>

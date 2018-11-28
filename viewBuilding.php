@@ -82,7 +82,7 @@ $_SESSION['buildingName']=$show_row['buildingName'];
     <div class="jumbotron jumbotron-fluid" >
   <div class="container">
     <h1 class="display-4"><?php print $show_row['buildingName']; ?></h1>
-    <h4>Complaints</h4>
+    <h4>Tenants</h4>
   </div>
 </div>
 
