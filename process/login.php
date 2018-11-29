@@ -22,8 +22,15 @@ if (isset($_POST["submit"])){
         $_SESSION['firstName']= $row['firstName'];
         $_SESSION['lastName']= $row['lastName'];
         $_SESSION['userMail']= $row['userMail'];
-        $_SESSION['login']=0;
+        
+        if ($row['designation']==0){
+            
         header("Location: ../home.php");
+        }else {
+          header("Location: ../admin.php");
+        }
+    
+        
         
         
     }

@@ -136,6 +136,7 @@ $show=$conn->query($showBuild_query);
                     <th scope="col">Caretaker Number</th>
                     <th scope="col">Unique Building Id</th>
                     <th scope="col">View more</th>
+                    <th scope="col">Delete</th>
                     </tr>
                   </thead>
     
@@ -156,6 +157,7 @@ $show=$conn->query($showBuild_query);
                         <td><?php print $show_row["caretakerNo"];?></td>
                         <td><?php print $show_row["buildID"];?></td>
                         <td><a href="viewBuilding.php?ID=<?php print $show_row['buildingID'];?>">View<?php print " ".$show_row['buildingName'];?></td>
+                        <td><a href="process/deleteBuilding.php?ID=<?php print $show_row['buildingID'];?>">Delete<?php print " ".$show_row['buildingName'];?></td>
                     </tr>
                   </tbody>
                
@@ -227,14 +229,7 @@ $show=$conn->query($showBuild_query);
         </div>
         <!-- /.container-fluid -->
 
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Koboraa 2018 </span>
-            </div>
-          </div>
-        </footer>
+        
 
       </div>
       <!-- /.content-wrapper -->
