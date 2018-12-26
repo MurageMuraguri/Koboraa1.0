@@ -2,8 +2,8 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 
--- Generation Time: Dec 03, 2018 at 11:00 AM
+-- Host: 127.0.0.1
+-- Generation Time: Dec 15, 2018 at 04:13 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -44,7 +44,11 @@ CREATE TABLE `building` (
 -- Dumping data for table `building`
 --
 
-
+INSERT INTO `building` (`buildingID`, `buildID`, `buildingName`, `buildingCity`, `buildingEstate`, `ownerID`, `roomCapacity`, `caretakerName`, `caretakerNo`) VALUES
+(1, 'kbsiw5487', 'Siwaka Plaza', 'Nairobi', 'West Madaraka', 2, 12, 'Karis', 71245678),
+(2, 'kbold5420', 'Old Mutual Building', 'Nairobi', 'CBD', 2, 21, 'Old Mutual', 2043201),
+(5, 'kbcap5402', 'capito', 'nai', '868', 14, 69, 'amos', 123456789),
+(6, 'kbpha5480', 'Phase 1', 'Nairobi', 'Mada', 2, 12, 'Su', 712345678);
 
 -- --------------------------------------------------------
 
@@ -67,6 +71,9 @@ CREATE TABLE `complaint` (
 -- Dumping data for table `complaint`
 --
 
+INSERT INTO `complaint` (`complaintID`, `complaint`, `complaintTime`, `buildID`, `buildingID`, `ownerID`, `buildingName`, `status`) VALUES
+(1, 'Tenant in HG1 is unruly!', 1543362176, 'kbsiw5487', 1, 2, 'Siwaka Plaza', 1),
+(2, 'No water!', 1543363175, 'kbsiw5487', 1, 2, 'Siwaka Plaza', 0);
 
 -- --------------------------------------------------------
 
@@ -89,6 +96,10 @@ CREATE TABLE `conpay` (
 -- Dumping data for table `conpay`
 --
 
+INSERT INTO `conpay` (`ID`, `transactionID`, `buildID`, `buildingID`, `ownerID`, `buildingName`, `rentalNumber`, `amount`) VALUES
+(1, 'UJYUIYSYU1234', 'kbsiw5487', 1, 2, 'Siwaka Plaza', 'HG2', 15000),
+(2, 'KH456GT11', 'kbpha5480', 6, 2, 'Phase 1', 'HF1', 15000);
+
 -- --------------------------------------------------------
 
 --
@@ -110,7 +121,10 @@ CREATE TABLE `prepay` (
 -- Dumping data for table `prepay`
 --
 
-
+INSERT INTO `prepay` (`ID`, `transactionID`, `buildID`, `buildingID`, `ownerID`, `buildingName`, `rentalNumber`, `amount`) VALUES
+(1, 'HGFRT4567', 'kbsiw5487', 1, 2, 'Siwaka Plaza', 'HG1', 15000),
+(2, 'UJYUIYSYU1234', 'kbsiw5487', 1, 2, 'Siwaka Plaza', 'HG2', 15000),
+(3, 'KH456GT11', 'kbpha5480', 6, 2, 'Phase 1', 'HF1', 15000);
 
 -- --------------------------------------------------------
 
@@ -133,7 +147,11 @@ CREATE TABLE `tenant` (
 -- Dumping data for table `tenant`
 --
 
-
+INSERT INTO `tenant` (`tenantID`, `tenantName`, `tenantPhone`, `tenantEmail`, `buildingID`, `ownerID`, `rentalNumber`, `payStatus`) VALUES
+(1, 'Murage Muraguri', 720533799, 'amosmurage56@gmail.com', 1, 2, 'HG1', 0),
+(2, 'Brian Mulei', 729468786, 'bmukshi@gmail.com', 1, 2, 'HG2', 0),
+(4, 'Nicodemus Opon', 707123456, 'nicodemusopon@gmail.com', 1, 2, 'HF1', 0),
+(5, 'Alex', 72649568, 'alex@yahoo.com', 6, 2, 'HF1', 0);
 
 -- --------------------------------------------------------
 
@@ -154,6 +172,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
+INSERT INTO `users` (`userID`, `firstName`, `lastName`, `userMail`, `userPass`, `designation`) VALUES
+(2, 'Amos', 'Muraguri', 'amosmurage56@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0),
+(3, 'Nicodemus', 'Opon', 'cbsoftlabke@gmail.com', '410ec15153a6dff0bed851467309bcbd', 0),
+(10, 'B', 'Mukshi', 'bmukshi@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0),
+(12, 'Amos ', 'Murage', 'admin@koboraa.com', '81dc9bdb52d04dc20036dbd8313ed055', 1);
 
 --
 -- Indexes for dumped tables

@@ -12,7 +12,7 @@ require "process/DB_connect.php";
 
 <body>
 <?php
-$show_query="SELECT * FROM users";
+$show_query="SELECT * FROM users WHERE designation = 0 ";
 $show=$conn->query($show_query);
 ?>
  
