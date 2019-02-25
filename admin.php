@@ -1,5 +1,6 @@
 <?php
 require "process/DB_connect.php";
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,7 +8,7 @@ require "process/DB_connect.php";
 <head>
     <title>Koboraa Admin</title>
     <link href="resources/style/bootstrap.css" rel="stylesheet"/>
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -22,27 +23,23 @@ $show=$conn->query($show_query);
  <!-- Navbar -->
         
  <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="#">
           <img src="resources/images/icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-         Koboraa
-        </a>
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle fa-fw"></i>
-          </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            
-            
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-          </div>
-          Hello Super User
-      </nav>
+         Koboraa Admin
+      
+        <div >
 
+           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><h5>Logout</h5></a>
+          </div>
+          
+         
+      </nav>
      <div class="row">
-     <div class="col-md-2">
+     <div class="col-md-1">
+     
      </div>
      
-     <div class="col-md-8">
+     <div class="col-md-9">
       <table class="table " >
                   <thead class="thead-dark">
                     <tr>
@@ -80,6 +77,18 @@ $show=$conn->query($show_query);
      </div>
 
      <div class="col-md-2">
+     <style>
+.vl {
+  border-left: 3px solid black;
+  height: 500px;
+}
+</style>
+
+<div class="vl">
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#usersModal"><i class="fas fa-plus"></i> Add Users</button>
+</div>
+
+
      </div>
      </div>
 <!-- Logout Modal-->
@@ -100,6 +109,54 @@ $show=$conn->query($show_query);
         </div>
       </div>
     </div>
+    <!--END-->
+
+    <!-- Add User Modal-->
+<div class="modal fade" id="usersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <form role="form" method = "POST" action = "process\userAdd.php" autocomplete = "off" accept-charset="UTF-8">
+                    <div class="form-group">
+                            <input type="text" class="form-control"  placeholder="First Name" name="fname" required>
+                        </div>
+                        <div class="form-group">
+                                <input type="text" class="form-control"  placeholder="Last Name" name="lname" required>
+                            </div>
+                   
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="user_id" placeholder="E-Mail" name="email" required>
+                    </div>
+                   
+                    <div class="form-group">
+                        <input type="password" class="form-control"  placeholder="Password" name="password" required>
+                    </div>
+                  
+                    <div class="form-group">
+                        <input type="password" class="form-control"  placeholder="Confirm Password" name="confPassword" required>
+                    </div>
+                     <div class="form-group">
+                     <label for="designation">Dsesignation</label>
+                     <label for="designation">(1 for Admin,0 for Users)</label>
+                        <input type="number" min="0" max="1"class="form-control"  placeholder="Designation" name="designation" required>
+                    </div>
+                   
+                    <input type="submit" id="submit" name="submit" class="btn btn-outline-primary" value="Register" />
+                </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <!--END-->
+    
+
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
